@@ -1,0 +1,81 @@
+<%- include('partials/header') %>
+<%- include('partials/navbar') %>
+<%- include('partials/sidebar', { activePage: 'add-admin' }) %>
+
+          <div class="content-wrapper">
+            <div class="row">
+              <div class="col-md-12 grid-margin">
+                <div class="row">
+                  <div class="col-12 col-xl-8 mb-4 mb-xl-0">
+                    <h3 class="font-weight-bold">Add New Admin</h3>
+                    <h6 class="font-weight-normal mb-0">Fill in the details to add a new admin</h6>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Flash Messages -->
+            <% if (typeof errors !== 'undefined' && errors.length > 0) { %>
+              <% errors.forEach(function(err){ %>
+                <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                  <%= err.msg %>
+                  <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+                </div>
+              <% }) %>
+            <% } %>
+            <% if (success_msg && success_msg.length > 0) { %>
+              <div class="alert alert-success alert-dismissible fade show" role="alert">
+                <%= success_msg %>
+                <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+              </div>
+            <% } %>
+
+            <div class="row">
+              <div class="col-12 grid-margin stretch-card">
+                <div class="card card-rounded">
+                  <div class="card-body">
+                    <h4 class="card-title card-title-dash">Admin Details</h4>
+                    <p class="card-subtitle card-subtitle-dash mb-4">All fields marked * are required</p>
+                    <form action="/add-admin" method="POST" enctype="multipart/form-data">
+                      <div class="row">
+                        <div class="col-md-6">
+                          <div class="form-group mb-3">
+                            <label for="addName" class="form-label">Full Name *</label>
+                            <input type="text" class="form-control form-control-lg" id="addName" name="name" placeholder="Enter full name" required>
+                          </div>
+                        </div>
+                        <div class="col-md-6">
+                          <div class="form-group mb-3">
+                            <label for="addEmail" class="form-label">Email Address *</label>
+                            <input type="email" class="form-control form-control-lg" id="addEmail" name="email" placeholder="Enter email address" required>
+                          </div>
+                        </div>
+                        <div class="col-md-6">
+                          <div class="form-group mb-3">
+                            <label for="addPassword" class="form-label">Password * (min 6 characters)</label>
+                            <input type="password" class="form-control form-control-lg" id="addPassword" name="password" placeholder="Enter password" required>
+                          </div>
+                        </div>
+                        <div class="col-md-6">
+                          <div class="form-group mb-3">
+                            <label for="addImage" class="form-label">Profile Image (Optional)</label>
+                            <input type="file" class="form-control form-control-lg" id="addImage" name="image" accept="image/*">
+                          </div>
+                        </div>
+                      </div>
+                      <div class="mt-4">
+                        <button type="submit" class="btn btn-primary btn-lg me-2">
+                          <i class="mdi mdi-account-plus me-1"></i>Add Admin
+                        </button>
+                        <a href="/view-admin" class="btn btn-outline-secondary btn-lg">
+                          <i class="mdi mdi-close me-1"></i>Cancel
+                        </a>
+                      </div>
+                    </form>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+<%- include('partials/footer') %>
